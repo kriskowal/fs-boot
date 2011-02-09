@@ -19,6 +19,10 @@
 /*whatsupdoc*/
 /*markup markdown*/
 
+var regExpEscape = function (str) {
+    return str.replace(/[-[\]{}()*+?.\\^$|,#\s]/g, "\\$&");
+};
+
 var os = typeof process !== "undefined"?
     process.platform :
     require("narwhal/engine").os;
@@ -90,7 +94,7 @@ exports.split = function (path) {
     // this special case helps isAbsolute
     // distinguish an empty path from an absolute path
     // "" -> [] NOT [""]
-    if (parts.length == 1 && parts[0] == "")
+    if (parts.length === 1 && parts[0] === "")
         return [];
     // "a" -> ["a"]
     // "/a" -> ["", "a"]
@@ -265,7 +269,7 @@ exports.directory = function (path) {
     // XXX needs to be sensitive to the root for
     // Windows compatibility
     parts.pop();
-    return parts.join(exports.SEPARATOR) || ".";
+    return parts.join(exports.SEPARATOR) || exports.ROOT;
 };
 
 /**
@@ -280,7 +284,7 @@ exports.base = function (path, extension) {
     var base = path.split(exports.SEPARATORS_RE()).pop();
     if (extension)
         base = base.replace(
-            new RegExp(RegExp.escape(extension) + '$'),
+            new RegExp(regExpEscape(extension) + '$'),
             ''
         );
     return base;
