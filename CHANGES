@@ -1,4 +1,7 @@
 
+0.0.4
+ - removed superfluous "q" package dependency.
+
 0.0.3
  - Fixed base and directory bugs
 
