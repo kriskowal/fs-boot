@@ -1,4 +1,7 @@
 
+0.0.6
+ - fixed bug in directory for relative directories
+
 0.0.4
  - removed superfluous "q" package dependency.
 

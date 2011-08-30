@@ -1,3 +1,4 @@
+(function (exports) {
 
 // -- kriskowal Kris Kowal Copyright (C) 2009-2010 MIT License
 // -- tlrobinson Tom Robinson TODO
@@ -25,7 +26,7 @@ var regExpEscape = function (str) {
 
 var os = typeof process !== "undefined"?
     process.platform :
-    require("narwhal/engine").os;
+    "unknown"
 var isWindows = /\bwind?(nt|ows)\b/i.test(os);
 
 /**
@@ -265,11 +266,25 @@ exports.root = function (path) {
  * @returns {String} the parent directory of the given path.
  */
 exports.directory = function (path) {
+    path = exports.normal(path);
+    var absolute = exports.isAbsolute(path);
     var parts = exports.split(path);
     // XXX needs to be sensitive to the root for
     // Windows compatibility
-    parts.pop();
-    return parts.join(exports.SEPARATOR) || exports.ROOT;
+    console.log(parts);
+    if (parts.length) {
+        if (parts[parts.length - 1] == "..") {
+            parts.push("..");
+        } else {
+            parts.pop();
+        }
+    } else {
+        parts.unshift("..");
+    }
+    return parts.join(exports.SEPARATOR) || (
+        exports.isRelative(path) ?
+        "" : exports.ROOT
+    );
 };
 
 /**
@@ -301,3 +316,4 @@ exports.extension = function (path) {
     return index <= 0 ? "" : path.substring(index);
 };
 
+})(typeof exports !== "undefined" ? exports : FS_BOOT = {});
