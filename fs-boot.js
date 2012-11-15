@@ -6,11 +6,6 @@
 /**
  * Pure JavaScript implementations of file system path
  * manipulation.
- *
- * This module depends on the non CommonJS "engine" module,
- * particularly for an "os" property that has the words
- * "windows" or "winnt" to distinguish Windows from Unix
- * file systems.
  */
 
 // NOTE: this file may be used is the engine bootstrapping
@@ -24,11 +19,7 @@ var regExpEscape = function (str) {
     return str.replace(/[-[\]{}()*+?.\\^$|,#\s]/g, "\\$&");
 };
 
-var os = typeof process !== "undefined"?
-    process.platform :
-    "unknown"
-var isWindows = /\bwind?(nt|ows|32)\b/i.test(os);
-
+var path = require('path');
 /**
  * @name ROOT
  * * `/` on Unix
@@ -47,13 +38,10 @@ var isWindows = /\bwind?(nt|ows|32)\b/i.test(os);
  * * `/` on Windows
  */
 
-if (isWindows) {
-    exports.ROOT = "\\";
-    exports.SEPARATOR = "\\";
+exports.ROOT = exports.SEPARATOR = path.sep;
+if (path.sep === "\\") {
     exports.ALT_SEPARATOR = "/";
 } else {
-    exports.ROOT = "/";
-    exports.SEPARATOR = "/";
     exports.ALT_SEPARATOR = undefined;
 }
 
