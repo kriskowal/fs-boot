@@ -27,7 +27,7 @@ var regExpEscape = function (str) {
 var os = typeof process !== "undefined"?
     process.platform :
     "unknown"
-var isWindows = /\bwind?(nt|ows)\b/i.test(os);
+var isWindows = /\bwind?(nt|ows|32)\b/i.test(os);
 
 /**
  * @name ROOT
