@@ -232,8 +232,8 @@ exports.isRelative = function (path) {
  * letter, as applicable.
  */
 exports.isRoot = function (first) {
-    if (isWindows) {
-        return /:$/.test(first);
+    if (exports.SEPARATOR === '\\') {
+        return /[a-zA-Z]:$/.test(first);
     } else {
         return first == "";
     }
