@@ -259,7 +259,6 @@ exports.directory = function (path) {
     var parts = exports.split(path);
     // XXX needs to be sensitive to the root for
     // Windows compatibility
-    console.log(parts);
     if (parts.length) {
         if (parts[parts.length - 1] == "..") {
             parts.push("..");
