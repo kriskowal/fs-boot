@@ -19,7 +19,7 @@
         "type": "git",
         "url": "http://github.com/kriskowal/fs-boot.git"
     },
-    "devDependences": {
+    "devDependencies": {
         "test": "0.3.0"
     },
     "engines": {
