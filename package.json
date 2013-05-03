@@ -1,6 +1,6 @@
 {
     "name": "fs-boot",
-    "version": "0.0.9",
+    "version": "0.0.10",
     "description": "Pure JavaScript implementation of common file-system API components",
     "homepage": "http://github.com/kriskowal/fs-boot/",
     "author": "Kris Kowal <kris@cixar.com> (http://github.com/kriskowal/)",
